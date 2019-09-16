@@ -1,0 +1,139 @@
+:root {
+    --clr-point:#3ac98c;
+    --clr-dark: #404040;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #f2f2f0;
+    font-family: "Karla", sans-serif;
+    color: var(--clr-dark);
+}
+
+.container {
+    width: 420px;
+    height: 600px;
+    text-align: center;
+    background: white;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-radius: 3%;
+}
+
+.header {
+    width: 100%;
+    min-height: 50px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 25px 0;
+}
+
+#date {
+    /* padding: 35px 0px 20px 35px; */
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--clr-point);
+}
+
+
+.fa-eraser:hover {
+    opacity: 0.7%;
+}
+
+.eraseIcon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    fill: orange;
+}
+
+ul.collection {
+    overflow: scroll;
+    padding: 10px 0 20px 0;
+    margin: 0;
+    min-height: 370px;
+    max-height: 370px;
+}
+
+
+
+.input-area {
+    width: 100%;
+    min-height: 50px;
+    text-align: right;
+}
+
+button {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+#task-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 20px 0 40px;
+}
+.addBtn {
+    width: 75px;
+}
+
+input[type='text'] {
+    border: none;
+    color: var(--clr-dark);
+    outline: none;
+    cursor: pointer;
+    width: 280px;
+    font-size: 1.6rem;
+}
+
+::placeholder {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    transition: opacity 250ms ease-in;
+    height: 30px;
+}
+
+#task:focus::placeholder {
+    opacity: 0;
+    
+    
+}
+
+li {
+    list-style: none;
+    margin-bottom: 1.8em;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.fa-minus:after {
+    color: red;
+}
+
+
+#addTodo {
+    width: 80px;
+    position: relative;
+    
+}
+
+.completed {
+    text-transform: line-through;
+    opacity: 0.5%;
+}
