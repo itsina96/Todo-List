@@ -14,7 +14,7 @@
         <div class="header">     
             <div id="date"></div>
             <div class="clearBtn">
-                <img class="eraseIcon" src="erase.svg">   
+                <i id="redo" class="fas fa-redo"></i>  
             </div>
         </div>
         <div class="content">
@@ -26,9 +26,9 @@
             </ul>
             <div class="input-area">
                 <input type="radiobox" id="filter" hidden>
-                <form id="task-form">
-                    <input type="text" id="task" placeholder="Add a new task here">
-                    <button type="submit"><img class="addBtn" src="add.svg"></button>
+                <form id="task-form" autocomplete="off">
+                    <input type="text" id="task" placeholder="ADD A NEW TASK HERE">
+                    <button type="submit"><div class="addBtn">+</div></button>
                 </form>
             </div>
         </div>

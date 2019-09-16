@@ -30,7 +30,7 @@ function getTasks() {
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
+    
     tasks.forEach(function(task){
         // add task 에서 했던거 그대로 똑같이, 
         const li = document.createElement('li');
@@ -38,7 +38,7 @@ function getTasks() {
         li.className = 'collection-item';
         // Create text node and append to the li
         li.appendChild(document.createTextNode(task));
-    
+        
         // Create new link element - for icon
         const link = document.createElement('a');
         link.className = 'delete-item secondary-content';
@@ -46,7 +46,7 @@ function getTasks() {
         link.innerHTML = '<i class="fa fa-minus"></i>';
         // Append link to the li 
         li.appendChild(link);
-
+        
         // finally Append the li to the ul!
         taskList.appendChild(li);
     });
@@ -55,34 +55,34 @@ function getTasks() {
 // Add-Task 
 function addTask(e) {
     if(taskInput.value === '') {
-        alert('Uh oh, you left your input empty. Please add a task');
+        alert('Uh oh, you left your input empty. Please add a task and press the button.');
     } else {
-
-    // Create li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item';
-    // Create text node and append to the li
-    li.appendChild(document.createTextNode(taskInput.value));
-    
-    // Create new link element - for icon
-    const link = document.createElement('a');
-    link.className = 'delete-item';
-    // Add icon HTML
-    link.innerHTML = '<i class="fa fa-minus"></i>';
-
-    // Append link to the li 
-    li.appendChild(link);
-
-    // finally Append the li to the ul!
-    taskList.appendChild(li);
-
-    // Store in local storage
-    storeTaskInLocalStorage(taskInput.value);
+        
+        // Create li element
+        const li = document.createElement('li');
+        // Add class
+        li.className = 'collection-item';
+        // Create text node and append to the li
+        li.appendChild(document.createTextNode(taskInput.value));
+        
+        // Create new link element - for icon
+        const link = document.createElement('a');
+        link.className = 'delete-item';
+        // Add icon HTML
+        link.innerHTML = '<i class="fa fa-minus"></i>';
+        
+        // Append link to the li 
+        li.appendChild(link);
+        
+        // finally Append the li to the ul!
+        taskList.appendChild(li);
+        
+        // Store in local storage
+        storeTaskInLocalStorage(taskInput.value);
     }
     // once we do that, Clear the input so next task could be written
     taskInput.value = '';
-
+    
     e.preventDefault();
 }
 
@@ -94,7 +94,7 @@ function storeTaskInLocalStorage(task) {
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
+    
     tasks.push(task);
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -104,7 +104,7 @@ function removeTask(e) {
     if(e.target.parentElement.classList.contains('delete-item')) {
         e.target.parentElement.parentElement.remove();
         
-        // Remove from LS as well
+        // Remove from LS
         removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }
 }
@@ -117,7 +117,7 @@ function removeTaskFromLocalStorage(taskItem) {
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
-
+    
     tasks.forEach(function(task, index){
         if(taskItem.textContent === task){
             tasks.splice(index, 1);
@@ -130,13 +130,14 @@ function removeTaskFromLocalStorage(taskItem) {
 function clearAll() {
     // you can do below, but it's not faster than while version
     // taskList.innerHTML = '';
-    if(confirm('Are you sure to clear all? You cannot undo this action.')) {
-    while(taskList.firstChild) {
-        taskList.removeChild(taskList.firstChild);
-    }
-    }
-    // All clear from LS as well
-    clearAllTaskFromLocalStorage();
+    if(confirm('Are you sure you want to clear your list? You cannot undo this action.')) {
+        while(taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild);
+            // All clear from LS as well
+            clearAllTaskFromLocalStorage();
+        }
+    } 
+    
 }
 
 // Clear all tasks from LS
@@ -156,7 +157,6 @@ function filterTasks(e) {
         }
     });
 }
-
 
 /**** Show Date ****/
 let options = { weekday:'long', month:'short', day:'numeric'};

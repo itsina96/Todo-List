@@ -12,6 +12,10 @@ body {
     color: var(--clr-dark);
 }
 
+.header, .input-area {
+    width: 100%;
+}
+
 .container {
     width: 420px;
     height: 600px;
@@ -28,8 +32,8 @@ body {
     border-radius: 3%;
 }
 
+/* Header - date & clear all starts here */
 .header {
-    width: 100%;
     min-height: 50px;
     text-align: left;
     display: flex;
@@ -39,7 +43,6 @@ body {
 }
 
 #date {
-    /* padding: 35px 0px 20px 35px; */
     font-size: 1.6rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -47,18 +50,29 @@ body {
     color: var(--clr-point);
 }
 
-
-.fa-eraser:hover {
-    opacity: 0.7%;
-}
-
-.eraseIcon {
-    width: 30px;
-    height: 30px;
+.fa-redo {
+    font-size: 1.15rem;
+    color: var(--clr-dark);
     cursor: pointer;
-    fill: orange;
+    display: inline-block;
 }
 
+.fa-redo:hover {
+    color: var(--clr-point);
+    transition: all 0.1s ease-in-out;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(365deg);
+    }
+}
+
+/* Main body starts here */
 ul.collection {
     overflow: scroll;
     padding: 10px 0 20px 0;
@@ -67,12 +81,9 @@ ul.collection {
     max-height: 370px;
 }
 
-
-
+/* Input area - bottom starts here */
 .input-area {
-    width: 100%;
     min-height: 50px;
-    text-align: right;
 }
 
 button {
@@ -86,10 +97,31 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 0 20px 0 40px;
+    padding: 0 20px 0 35px;
+    margin: 0 10px;
 }
+
 .addBtn {
-    width: 75px;
+    width: 70px;
+    height: 70px;
+    background-color: var(--clr-point);
+    border-radius: 50%;
+    transition: all 0.1s ease-in-out;
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    line-height: 70px;
+    font-weight: lighter;
+}
+
+.addBtn:hover {
+    transform: scale(1.05);
+    background-color: #12b36e;
+    animation: popBtn 0.4s linear 1;
+}
+
+@keyframes popBtn{
+    50%  {transform: scale(1.2)};
 }
 
 input[type='text'] {
@@ -110,8 +142,8 @@ input[type='text'] {
 
 #task:focus::placeholder {
     opacity: 0;
-    
-    
+    border-bottom: 1px solid black;
+    position: relative;
 }
 
 li {
@@ -120,20 +152,4 @@ li {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-}
-
-.fa-minus:after {
-    color: red;
-}
-
-
-#addTodo {
-    width: 80px;
-    position: relative;
-    
-}
-
-.completed {
-    text-transform: line-through;
-    opacity: 0.5%;
 }
