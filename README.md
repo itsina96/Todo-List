@@ -9,8 +9,9 @@ A simple todo list application made with HTML, CSS, and pure Javascript.
 - Local Storage<br>
 - CSS transition for a better UI/UX<br>
 <br>
-<h4>Next todo</h4>
+<h4>Next tasks</h4>
 
 - [ ] Add task remaining counter
+- [ ] text-transform and checkbox when clicked on lists
 - [ ] Add transition for the placeholder in CSS
 - [x] Hide filter function
