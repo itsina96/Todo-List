@@ -8,6 +8,7 @@ A simple todo list application made with HTML, CSS, and pure Javascript.
 - CSS transition for a better UI/UX<br>
 <br>
 <h4>Next todo</h4>
+
 - [ ] Add task remaining counter
 - [ ] Add transition for the placeholder in CSS
 - [x] Hide filter function
