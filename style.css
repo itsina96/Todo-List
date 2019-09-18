@@ -1,3 +1,7 @@
+/* 1.리스트 클릭하면(크로스 하면) 각각 지울수있는 엑스/쓰레기통 버튼이 나타나는 기능 
+2. 자바스크립트에서 첫 캐릭터 대문자로 자동바꿈
+3. 삭제버튼 누르면 스르륵 사라지는 효과  */
+
 :root {
     --clr-point:#3ac98c;
     --clr-dark: #404040;
@@ -12,10 +16,7 @@ body {
     color: var(--clr-dark);
 }
 
-.header, .input-area {
-    width: 100%;
-}
-
+/* Entire box  */
 .container {
     width: 420px;
     height: 600px;
@@ -40,6 +41,7 @@ body {
     align-items: center;
     justify-content: space-around;
     padding: 25px 0;
+    width: 100%;
 }
 
 #date {
@@ -48,6 +50,7 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     color: var(--clr-point);
+    font-weight: 700;
 }
 
 .fa-redo {
@@ -73,17 +76,75 @@ body {
 }
 
 /* Main body starts here */
-ul.collection {
+.collection {
     overflow: scroll;
-    padding: 10px 0 20px 0;
+    padding: 10px 45px 20px 45px;
     margin: 0;
     min-height: 370px;
     max-height: 370px;
 }
 
+[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    --size: 0.95em;
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    cursor: pointer;
+    border: 1px solid var(--clr-dark);
+    margin-right: var(--size);
+    transform: scale(1);
+    transition: transform 100ms ease-in-out;
+}
+/* 
+label:hover .custom-checkbox {
+    transform: scale(1.2);
+} */
+
+/* [type="checkbox"]:checked + label .custom-checkbox {
+    background: var(--clr-point);
+} */
+
+.fa-check {
+    color: var(--clr-point);
+    font-size: 22px;
+    padding-left: 50px;
+}
+
+.fa-times {
+    font-size: 0.9rem;
+}
+
+[type="checkbox"]:checked + label{
+    opacity: 0.5;
+    text-decoration: line-through;
+}
+
+label {
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.delete-item {
+    margin-left: auto;
+
+}
+
+.completed {
+    opacity: 0.5%;
+}
+
 /* Input area - bottom starts here */
 .input-area {
     min-height: 50px;
+    width: 100%;
 }
 
 button {
@@ -116,7 +177,7 @@ button {
 
 .addBtn:hover {
     transform: scale(1.05);
-    background-color: #12b36e;
+    background-color: #07ab65;
     animation: popBtn 0.4s linear 1;
 }
 
@@ -140,16 +201,6 @@ input[type='text'] {
     height: 30px;
 }
 
-#task:focus::placeholder {
+#task:focus::placeholder{
     opacity: 0;
-    border-bottom: 1px solid black;
-    position: relative;
-}
-
-li {
-    list-style: none;
-    margin-bottom: 1.8em;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
 }

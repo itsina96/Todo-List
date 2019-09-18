@@ -14,12 +14,10 @@ function loadEventListeners() {
     document.addEventListener('DOMContentLoaded', getTasks)
     // Add-task event
     form.addEventListener('submit', addTask);
-    // Remove-task event
+    // Remove-a-task event
     taskList.addEventListener('click', removeTask);
     // Clear-all-task event
     clearBtn.addEventListener('click', clearAll);
-    // Filter tasks event
-    filter.addEventListener('keyup', filterTasks);
 }
 
 // Get Tasks from Localstorage
@@ -32,18 +30,31 @@ function getTasks() {
     }
     
     tasks.forEach(function(task){
-        // add task 에서 했던거 그대로 똑같이, 
-        const li = document.createElement('li');
+        // Create li element
+        const li = document.createElement('label');
         // Add class
         li.className = 'collection-item';
+        li.setAttribute('for', 'connect');
+        
+        // Add checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'connect';
+        li.appendChild(checkbox);
+        
+        // Add custom checkbox for styling purpose 
+        const customCheckbox = document.createElement('span');
+        customCheckbox.className = 'custom-checkbox';
+        li.appendChild(customCheckbox);
+        // customCheckbox.innerHTML = '<i class="fas fa-check"></i>';
         // Create text node and append to the li
         li.appendChild(document.createTextNode(task));
         
         // Create new link element - for icon
         const link = document.createElement('a');
-        link.className = 'delete-item secondary-content';
+        link.className = 'delete-item';
         // Add icon HTML
-        link.innerHTML = '<i class="fa fa-minus"></i>';
+        link.innerHTML = '<i class="fas fa-times"></i>';
         // Append link to the li 
         li.appendChild(link);
         
@@ -55,21 +66,35 @@ function getTasks() {
 // Add-Task 
 function addTask(e) {
     if(taskInput.value === '') {
-        alert('Uh oh, you left your input empty. Please add a task and press the button.');
+        alert('It seems you left your input empty. Please add a task and press the button.');
     } else {
-        
         // Create li element
-        const li = document.createElement('li');
+        const li = document.createElement('label');
         // Add class
         li.className = 'collection-item';
+        li.setAttribute('for', 'connect');
+        
+        // Add checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = 'connect';
+        li.appendChild(checkbox);
+        
+        // Add custom checkbox for styling purpose 
+        const customCheckbox = document.createElement('span');
+        customCheckbox.className = 'custom-checkbox';
+        li.appendChild(customCheckbox);
+        
+        // customCheckbox.innerHTML = '<i class="fas fa-check"></i>';
         // Create text node and append to the li
         li.appendChild(document.createTextNode(taskInput.value));
         
         // Create new link element - for icon
         const link = document.createElement('a');
         link.className = 'delete-item';
+        
         // Add icon HTML
-        link.innerHTML = '<i class="fa fa-minus"></i>';
+        link.innerHTML = '<i class="fas fa-times"></i>';
         
         // Append link to the li 
         li.appendChild(link);
@@ -99,17 +124,16 @@ function storeTaskInLocalStorage(task) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Remove-tasks - using event delegation
+// Remove a task - using event delegation
 function removeTask(e) {
     if(e.target.parentElement.classList.contains('delete-item')) {
         e.target.parentElement.parentElement.remove();
         
-        // Remove from LS
         removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }
 }
 
-// Remove-tasks - from LS as well
+// Remove a task - from LS as well
 function removeTaskFromLocalStorage(taskItem) {
     let tasks;
     if(localStorage.getItem('tasks') === null) {
@@ -126,11 +150,10 @@ function removeTaskFromLocalStorage(taskItem) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Clear-all-tasks
+// Clear-ALL-tasks
 function clearAll() {
-    // you can do below, but it's not faster than while version
-    // taskList.innerHTML = '';
-    if(confirm('Are you sure you want to clear your list? You cannot undo this action.')) {
+    // you can do taskList.innerHTML = '', but it's not faster than while version
+    if(confirm('Are you sure you want to clear ALL? You cannot undo this action.')) {
         while(taskList.firstChild) {
             taskList.removeChild(taskList.firstChild);
             // All clear from LS as well
@@ -139,27 +162,14 @@ function clearAll() {
     } 
     
 }
-
-// Clear all tasks from LS
+// Clear All tasks from LS
 function clearAllTaskFromLocalStorage() {
     localStorage.clear();
 }
 
-// Filter-tasks
-function filterTasks(e) {
-    const text = e.target.value.toLowerCase();
-    document.querySelectorAll('.collection-item').forEach(function(task){
-        const item = task.firstChild.textContent;
-        if(item.toLowerCase().indexOf(text) != -1){
-            task.style.display = 'block';
-        } else {
-            task.style.display = 'none';
-        }
-    });
-}
-
-/**** Show Date ****/
+/* Show Date */
 let options = { weekday:'long', month:'short', day:'numeric'};
 let today = new Date();
 date.innerHTML = today.toLocaleDateString("en-US", options);
+
 
