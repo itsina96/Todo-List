@@ -12,7 +12,6 @@ A simple todo list application made with HTML, CSS, and pure Javascript.
 <h4>Next tasks</h4>
 
 - [x] Add animation to clear button
-- [ ] Add task remaining counter
-- [ ] text-transform and checkbox when clicked on lists
-- [ ] Add transition for text placeholder in CSS
+- [x] text-transform and checkbox when list is clicked
+- [x] Add transition for text placeholder in CSS
 - [x] Hide filter function
