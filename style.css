@@ -1,11 +1,12 @@
 /* 1.리스트 클릭하면(크로스 하면) 각각 지울수있는 엑스/쓰레기통 버튼이 나타나는 기능 
 2. 자바스크립트에서 첫 캐릭터 대문자로 자동바꿈
-3. 삭제버튼 누르면 스르륵 사라지는 효과  */
+/* 3. 삭제버튼 누르면 스르륵 사라지는 효과   */
 
 :root {
     --clr-point:#3ac98c;
     --clr-dark: #404040;
 }
+
 
 body {
     height: 100vh;
@@ -20,7 +21,6 @@ body {
 .container {
     width: 420px;
     height: 600px;
-    text-align: center;
     background: white;
     display: inline-block;
     position: fixed;
@@ -53,7 +53,7 @@ body {
     font-weight: 700;
 }
 
-.fa-redo {
+.fa-trash {
     font-size: 1.15rem;
     color: var(--clr-dark);
     cursor: pointer;
@@ -74,7 +74,6 @@ body {
         transform: rotate(365deg);
     }
 }
-
 /* Main body starts here */
 .collection {
     overflow: scroll;
@@ -82,6 +81,14 @@ body {
     margin: 0;
     min-height: 370px;
     max-height: 370px;
+    max-width: 330px;
+}
+
+label {
+    margin-bottom: 2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 [type="checkbox"] {
@@ -100,15 +107,13 @@ body {
     margin-right: var(--size);
     transform: scale(1);
     transition: transform 100ms ease-in-out;
-}
-/* 
+
+} 
+
+
 label:hover .custom-checkbox {
     transform: scale(1.2);
-} */
-
-/* [type="checkbox"]:checked + label .custom-checkbox {
-    background: var(--clr-point);
-} */
+}
 
 .fa-check {
     color: var(--clr-point);
@@ -119,27 +124,31 @@ label:hover .custom-checkbox {
 .fa-times {
     font-size: 0.9rem;
 }
-
-[type="checkbox"]:checked + label{
-    opacity: 0.5;
-    text-decoration: line-through;
+.fa-times:hover {
+    color: var(--clr-point);
 }
 
-label {
-    margin-bottom: 2em;
+[type="checkbox"]:checked + label {
+    opacity: 0.5;
+    /* text-decoration: line-through; */
+}
+
+[type="checkbox"]:checked + label .custom-checkbox::before{
+    content: "\f00c";
+    font-family: FontAwesome;
+    text-decoration: inherit;
+    color: var(--clr-point);
+    font-size: 1.3rem;
     display: flex;
-    align-items: center;
-    cursor: pointer;
+    justify-content: end;
+    margin: -3px;
+    z-index: 2;
 }
 
 .delete-item {
     margin-left: auto;
-
 }
 
-.completed {
-    opacity: 0.5%;
-}
 
 /* Input area - bottom starts here */
 .input-area {
@@ -186,12 +195,17 @@ button {
 }
 
 input[type='text'] {
-    border: none;
+    border: 0;
     color: var(--clr-dark);
     outline: none;
     cursor: pointer;
-    width: 280px;
+    width: 250px;
     font-size: 1.6rem;
+    margin-right: auto;
+}
+
+#task:focus {
+    border-bottom: 3px solid var(--clr-point);
 }
 
 ::placeholder {
@@ -203,4 +217,5 @@ input[type='text'] {
 
 #task:focus::placeholder{
     opacity: 0;
+
 }
