@@ -1,12 +1,7 @@
-/* 1.리스트 클릭하면(크로스 하면) 각각 지울수있는 엑스/쓰레기통 버튼이 나타나는 기능 
-2. 자바스크립트에서 첫 캐릭터 대문자로 자동바꿈
-/* 3. 삭제버튼 누르면 스르륵 사라지는 효과   */
-
 :root {
     --clr-point:#3ac98c;
     --clr-dark: #404040;
 }
-
 
 body {
     height: 100vh;
@@ -74,6 +69,7 @@ body {
         transform: rotate(365deg);
     }
 }
+
 /* Main body starts here */
 .collection {
     overflow: scroll;
@@ -107,30 +103,23 @@ label {
     margin-right: var(--size);
     transform: scale(1);
     transition: transform 100ms ease-in-out;
-
 } 
-
 
 label:hover .custom-checkbox {
     transform: scale(1.2);
 }
 
-.fa-check {
-    color: var(--clr-point);
-    font-size: 22px;
-    padding-left: 50px;
-}
-
 .fa-times {
     font-size: 0.9rem;
 }
+
 .fa-times:hover {
     color: var(--clr-point);
+    scale: 2rem;
 }
 
 [type="checkbox"]:checked + label {
     opacity: 0.5;
-    /* text-decoration: line-through; */
 }
 
 [type="checkbox"]:checked + label .custom-checkbox::before{
@@ -144,23 +133,22 @@ label:hover .custom-checkbox {
     margin: -3px;
     z-index: 2;
 }
-
+/* for delete icon */
 .delete-item {
     margin-left: auto;
 }
 
-
 /* Input area - bottom starts here */
-.input-area {
-    min-height: 50px;
-    width: 100%;
-}
-
 button {
     background: transparent;
     border: none;
     outline: none;
     padding: 0;
+}
+
+.input-area {
+    min-height: 50px;
+    width: 100%;
 }
 
 #task-form {

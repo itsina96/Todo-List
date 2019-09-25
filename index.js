@@ -18,13 +18,12 @@ function loadEventListeners() {
     clearBtn.addEventListener('click', clearAll);
 }
 
+// For using checkbox
 function checkID(str){
     let res;
     res = str.replace(/[^0-9]/g,"");
     return res;
 }
-
-
 
 // Get Tasks from Localstorage
 function getTasks() {
@@ -44,8 +43,7 @@ function getTasks() {
     
     
     tasks.forEach(function(task){
-        // console.log("get");
-        // console.log(task);
+        
         let v = checkID(task.id);
         old[v]=true;
         checkedIndex(old);
@@ -53,22 +51,15 @@ function getTasks() {
         const eachDiv = document.createElement('div');
         eachDiv.className = 'each-div';
         
-        // Add checkbox
-        
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        // checkbox.setAttribute('data-class',task.checked );
-        // checkbox.checked = task.checked;   
-        
-        
         
         checkbox.setAttribute('id', task.id);
         
         eachDiv.appendChild(checkbox);
         
-        // Create li element
         const li = document.createElement('label');
-        // Add class
+        
         li.className = 'collection-item';
         li.setAttribute('for', task.id);
         
@@ -110,8 +101,6 @@ function addTask(e) {
         
         index++;
         
-        
-        
         const eachDiv = document.createElement('div');
         eachDiv.className = 'each-div';
         
@@ -125,22 +114,23 @@ function addTask(e) {
         li.className = 'collection-item';
         li.setAttribute('for', 'connect'+index);
         
+        // Add custom checkbox for styling purpose
         const customCheckbox = document.createElement('span');
         customCheckbox.className = 'custom-checkbox';
         
-        
+        // Append custom checkbox to list
         li.appendChild(customCheckbox);
-        
+        // Create text node and append to the li
         li.appendChild(document.createTextNode(taskInput.value));
         
+        // Create new link element for icon
         const link = document.createElement('a');
         link.className = 'delete-item';
         link.innerHTML = '<i class="fas fa-times"></i>';
         li.appendChild(link);
+
         eachDiv.appendChild(li)
         taskList.appendChild(eachDiv);
-        
-        // storeTaskInLocalStorage(taskInput.value);
         
         storeTaskInLocalStorage(checkbox,taskInput.value,checkbox.checked);
         
@@ -150,8 +140,9 @@ function addTask(e) {
     e.preventDefault();
 }
 
+// For checkbox
 function checkedIndex(old){
-    for(var i=0; i<old.length; i++){
+    for(let i=0; i<old.length; i++){
         if(old[index]){
             index++;
         }else{
@@ -160,14 +151,11 @@ function checkedIndex(old){
     }
 }
 
-
-
 // Store Task
 function storeTaskInLocalStorage(task,taskValue) {
     let tasks;
     //let ids;
     //checkedBox(task.id);
-    
     
     if(localStorage.getItem('tasks') === null) {
         tasks = [];
@@ -178,7 +166,6 @@ function storeTaskInLocalStorage(task,taskValue) {
         //ids=JSON.parse(localStorage.getItem('ids'));
         
     }
-    
     
     tasks.push({"id":task.id, "value":taskValue});
     //ids.push(checkId);
@@ -191,22 +178,18 @@ function removeTask(e) {
     if(e.target.parentElement.classList.contains('delete-item')) {
         
         e.target.parentElement.parentElement.remove();
-        console.log(e.target.parentElement.parentElement);
+        // console.log(e.target.parentElement.parentElement);
         removeTaskFromLocalStorage(e.target.parentElement.parentElement);
     }
 }
 
-// Remove a task - from LS as well
+// Remove a task from LS as well
 function removeTaskFromLocalStorage(taskItem) {
-    // alert(taskItem);
     let tasks;
     if(localStorage.getItem('tasks') === null) {
         tasks = [];
-        //old=[];
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
-        
-        
     }
     
     tasks.forEach(function(task, index){
@@ -221,7 +204,7 @@ function removeTaskFromLocalStorage(taskItem) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-// Clear-ALL-tasks
+// Clear ALL tasks
 function clearAll() {
     if(confirm('Are you sure you want to clear ALL? You cannot undo this action.')) {
         while(taskList.firstChild) {
