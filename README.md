@@ -1,5 +1,5 @@
 # Todo List 
-A simple todo list application made with HTML, CSS, and pure Javascript.
+A simple todo list application made with HTML, CSS, and pure Javascript. No framework or library. 
 
 ![Alt Text](https://i.imgur.com/fzIUhZJ.gif)
 
