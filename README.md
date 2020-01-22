@@ -14,3 +14,5 @@ A simple todo list application made with HTML, CSS, and pure Javascript. No fram
 - [x] Add animation to clear button
 - [x] text-transform and checkbox when list is clicked
 - [x] Add transition for text placeholder in CSS
+
+https://itsina96.github.io/Todo-List/
